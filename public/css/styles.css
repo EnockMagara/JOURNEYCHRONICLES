@@ -1,0 +1,181 @@
+body {
+    font-family: "Courier New", monospace; /* Use vintage font */
+    background-color: #f4f1e9; /* Paper background color */
+    color: rgba(0, 0, 0, 0.75);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0; /* Increased padding */
+}
+
+main {
+    flex: 1;
+    padding: 40px; /* Increased padding */
+    text-align: center;
+    background-color: #f9f9f9; /* Light background for contrast */
+    margin-bottom: 20px; /* Space between sections */
+}
+
+h1 {
+    margin: 30px 0; /* Increased margin */
+}
+
+p {
+    margin: 20px 0; /* Increased margin */
+}
+
+a.button, button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background-color: #808080; /* Classic grey color */
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    border: 2px solid #333333; /* Darker border for the button */
+    border-radius: 0; /* Remove rounded corners for a boxy look */
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace; /* Old-school font */
+    font-size: 14px; /* Smaller font for retro look */
+    box-shadow: 2px 2px 0 #333333; /* Hard shadow for a 3D effect */
+    transition: none; /* No modern transition effect */
+    text-align: center;
+}
+
+a.button:hover, button:hover {
+    background-color: #666666; /* Slightly darker gray on hover */
+    box-shadow: 1px 1px 0 #333333; /* Subtle movement on hover */
+}
+
+.form-group {
+    margin: 20px 0; /* Increased margin */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px; /* Increased margin */
+}
+
+input[type="file"], textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.page-content {
+    padding: 2rem; /* Increased padding */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff; /* White background for contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px; /* Space between items */
+}
+
+.photo-item {
+    display: flex;
+    flex-direction: column; /* Stack image and caption vertically */
+    align-items: center; /* Center align items */
+    max-width: 300px; /* Limit the width of each item */
+    margin: 10px; /* Margin around each item */
+}
+
+.photo-item img {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+     /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.caption {
+    margin-top: 10px; /* Space between image and caption */
+    font-size: 0.7rem; /* Font size for caption */
+    color: #333; /* Text color */
+    text-align: start; /* Center align text */
+}
+
+.button {
+    padding: 0.5rem 1rem; /* Padding for size */
+    background-color: #808080;
+    border: none; /* Remove border */
+    padding: 8px 16px;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Font size */
+    color: #333; /* Text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.button:hover {
+    background-color: #595f64; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="file"], textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.button-container {
+    text-align: center; /* Center the button */
+    margin-top: 2rem; /* Space above the line */
+}
+
+.button-container::before {
+    content: ""; /* Empty content for the line */
+    display: block;
+    width: 100%; /* Full width */
+    height: 1px; /* Line height */
+    background-color: #ccc; /* Lighter line color */
+    margin-bottom: 1rem; /* Space between line and button */
+}
+
+.old-school-title {
+    font-family: "Courier New", monospace; /* Old-school font */
+    font-size: 3rem; /* Large font size */
+    color: #fff; /* White text color */
+    text-shadow: 2px 2px 0 #000; /* Black shadow for depth */
+    margin: 0; /* Remove default margin */
+    padding: 20px 0; /* Padding for spacing */
+    background-color: #333; /* Dark background */
+    text-align: center; /* Center the text */
+    border-bottom: 2px solid #555; /* Subtle border for separation */
+}
