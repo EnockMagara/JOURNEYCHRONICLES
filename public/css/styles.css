@@ -1,25 +1,25 @@
 body {
     font-family: "Courier New", monospace; /* Use vintage font */
-    background-color: #f4f1e9; /* Paper background color */
-    color: rgba(0, 0, 0, 0.75);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    background-color: #fefdfc; /* Use the specified background color */
+    color: rgba(0, 0, 0, 0.75); /* Text color with slight transparency */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange children in a column */
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
 }
 
 header, footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
+    background-color: #333; /* Dark background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Center align text */
     padding: 20px 0; /* Increased padding */
 }
 
 main {
-    flex: 1;
+    flex: 1; /* Allow main to grow and fill available space */
     padding: 40px; /* Increased padding */
-    text-align: center;
+    text-align: center; /* Center align text */
     background-color: #f9f9f9; /* Light background for contrast */
     margin-bottom: 20px; /* Space between sections */
 }
@@ -33,20 +33,20 @@ p {
 }
 
 a.button, button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 20px 0;
+    display: inline-block; /* Display as inline-block */
+    padding: 10px 20px; /* Padding for size */
+    margin: 20px 0; /* Margin for spacing */
     background-color: #808080; /* Classic grey color */
     color: #ffffff; /* White text */
-    text-decoration: none;
+    text-decoration: none; /* Remove underline */
     border: 2px solid #333333; /* Darker border for the button */
     border-radius: 0; /* Remove rounded corners for a boxy look */
-    cursor: pointer;
+    cursor: pointer; /* Pointer cursor on hover */
     font-family: 'Courier New', Courier, monospace; /* Old-school font */
     font-size: 14px; /* Smaller font for retro look */
     box-shadow: 2px 2px 0 #333333; /* Hard shadow for a 3D effect */
     transition: none; /* No modern transition effect */
-    text-align: center;
+    text-align: center; /* Center align text */
 }
 
 a.button:hover, button:hover {
@@ -59,54 +59,61 @@ a.button:hover, button:hover {
 }
 
 label {
-    display: block;
+    display: block; /* Display as block */
     margin-bottom: 10px; /* Increased margin */
 }
 
 input[type="file"], textarea {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin: 0 auto;
-    display: block;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width */
+    padding: 10px; /* Padding for size */
+    margin: 0 auto; /* Center align */
+    display: block; /* Display as block */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
 }
 
 textarea {
-    resize: vertical;
+    resize: vertical; /* Allow vertical resizing */
 }
 
 .page-content {
     padding: 2rem; /* Increased padding */
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff; /* White background for contrast */
+    text-align: left; /* Left align text */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange children in a column */
+    align-items: center; /* Center align items */
+    background-color: #e5cdb8; /* White background for contrast */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     border-radius: 8px; /* Rounded corners */
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center align items */
     gap: 40px; /* Space between items */
 }
 
 .photo-item {
-    display: flex;
-    flex-direction: column; /* Stack image and caption vertically */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange children in a column */
     align-items: center; /* Center align items */
-    max-width: 300px; /* Limit the width of each item */
-    margin: 10px; /* Margin around each item */
+    max-width: 300px; /* Maximum width */
+    margin: 10px; /* Margin for spacing */
+    opacity: 0; /* Start hidden */
+    transform: translateY(80px); /* Start slightly below */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Smooth transition */
+}
+
+.photo-item.visible {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
 }
 
 .photo-item img {
     width: 100%; /* Make image responsive */
     height: auto; /* Maintain aspect ratio */
-     /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
@@ -114,14 +121,14 @@ textarea {
     margin-top: 10px; /* Space between image and caption */
     font-size: 0.7rem; /* Font size for caption */
     color: #333; /* Text color */
-    text-align: start; /* Center align text */
+    text-align: start; /* Left align text */
 }
 
 .button {
     padding: 0.5rem 1rem; /* Padding for size */
-    background-color: #808080;
+    background-color: #808080; /* Classic grey color */
     border: none; /* Remove border */
-    padding: 8px 16px;
+    padding: 8px 16px; /* Padding for size */
     border-radius: 5px; /* Rounded corners */
     font-weight: bold; /* Bold text */
     cursor: pointer; /* Pointer cursor on hover */
@@ -136,22 +143,22 @@ textarea {
 }
 
 .form-group {
-    margin-bottom: 1rem;
-    width: 100%;
-    max-width: 400px;
+    margin-bottom: 1rem; /* Margin for spacing */
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width */
 }
 
 label {
-    display: block;
-    margin-bottom: 0.5rem;
+    display: block; /* Display as block */
+    margin-bottom: 0.5rem; /* Margin for spacing */
 }
 
 input[type="file"], textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+    width: 100%; /* Full width */
+    padding: 0.5rem; /* Padding for size */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Font size */
 }
 
 .button-container {
@@ -161,7 +168,7 @@ input[type="file"], textarea {
 
 .button-container::before {
     content: ""; /* Empty content for the line */
-    display: block;
+    display: block; /* Display as block */
     width: 100%; /* Full width */
     height: 1px; /* Line height */
     background-color: #ccc; /* Lighter line color */
@@ -175,7 +182,44 @@ input[type="file"], textarea {
     text-shadow: 2px 2px 0 #000; /* Black shadow for depth */
     margin: 0; /* Remove default margin */
     padding: 20px 0; /* Padding for spacing */
-    background-color: #333; /* Dark background */
+    background-color: #e5cdb8; /* Dark background */
     text-align: center; /* Center the text */
     border-bottom: 2px solid #555; /* Subtle border for separation */
+}
+
+/* Map and Modal Styles */
+#map {
+    height: 500px; /* Set the height of the map */
+    width: 100%; /* Full width */
+    border: 2px solid #000; /* Black border for old-school look */
+}
+
+.modal {
+    display: none; /* Hide by default */
+    position: fixed; /* Fixed position */
+    z-index: 1000; /* High z-index for overlay */
+    left: 0; /* Align to left */
+    top: 0; /* Align to top */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scrolling */
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
+}
+
+.modal-content {
+    margin: auto; /* Center align */
+    display: block; /* Display as block */
+    max-width: 90%; /* Limit width to 90% of viewport */
+    max-height: 90%; /* Limit height to 90% of viewport */
+    object-fit: contain; /* Ensure the image fits within the modal */
+}
+
+.close {
+    position: absolute; /* Absolute position */
+    top: 20px; /* Align to top */
+    right: 35px; /* Align to right */
+    color: #fff; /* White color */
+    font-size: 40px; /* Large font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
 }

@@ -51,8 +51,12 @@ router.post('/', upload.single('photo'), async (req, res) => {
 
         fs.readFile(dataPath, (err, content) => {
             let jsonData = [];
-            if (!err) {
-                jsonData = JSON.parse(content);
+            if (!err && content.length > 0) {
+                try {
+                    jsonData = JSON.parse(content);
+                } catch (parseError) {
+                    console.error('Error parsing JSON:', parseError);
+                }
             }
             jsonData.push(imageData);
             fs.writeFile(dataPath, JSON.stringify(jsonData), (err) => {
