@@ -28,5 +28,21 @@
             <% }) %>
         </div>
     </main>
+    <script>
+        function onScroll() {
+            const items = document.querySelectorAll('.photo-item');
+            items.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    item.classList.add('visible'); // Add class when in view
+                } else {
+                    item.classList.remove('visible'); // Remove class when out of view
+                }
+            });
+        }
+
+        window.addEventListener('scroll', onScroll);
+        window.addEventListener('load', onScroll); // Trigger on load
+    </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'; // Import body-parser for parsing request 
 import multer from 'multer'; // Import multer for handling file uploads
 import indexRouter from './routes/index.js'; // Import index route
 import uploadRouter from './routes/upload.js'; // Import upload route
+import mapRouter from './routes/map.js'; // Import map route
 
 const app = express(); // Create an Express application
 const PORT = process.env.PORT || 3000; // Define the port
@@ -29,6 +30,7 @@ const upload = multer({ dest: 'uploads/' }); // Files will be stored in the 'upl
 // Use routes
 app.use('/', indexRouter);
 app.use('/upload', uploadRouter);
+app.use('/map', mapRouter);
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -36,8 +38,4 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-});
-
-app.get('/map', (req, res) => {
-    res.render('map');
 });
