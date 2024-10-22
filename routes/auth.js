@@ -26,11 +26,11 @@ router.post('/signup', (req, res) => {
             console.error('Error reading users data:', err);
             return res.status(500).send('Error reading users data');
         }
-        let users = JSON.parse(content);
+        const users = JSON.parse(content);
         const hashedPassword = bcrypt.hashSync(password, 10);
         users.push({ username, password: hashedPassword, role: 'user' });
         fs.writeFile(usersPath, JSON.stringify(users), (err) => {
-            if (err) return res.status(500).send('Error saving user');
+            if (err) {return res.status(500).send('Error saving user');}
             res.redirect('/login'); // Redirect to login page after successful sign-up
         });
     });
@@ -41,7 +41,7 @@ router.post('/login', (req, res) => {
     const usersPath = path.join(__dirname, '../uploads/users.json');
 
     fs.readFile(usersPath, (err, content) => {
-        if (err) return res.status(500).send('Error reading users data');
+        if (err) {return res.status(500).send('Error reading users data');}
         const users = JSON.parse(content);
         const user = users.find(u => u.username === username);
         if (user && bcrypt.compareSync(password, user.password)) {

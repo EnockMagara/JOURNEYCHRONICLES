@@ -61,7 +61,7 @@ router.post('/', upload.single('photo'), async (req, res) => {
             }
             jsonData.push(imageData);
             fs.writeFile(dataPath, JSON.stringify(jsonData), (err) => {
-                if (err) console.error(err);
+                if (err) {console.error(err);}
                 res.redirect('/');
             });
         });

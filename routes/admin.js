@@ -18,7 +18,7 @@ router.get('/', (req, res) => { // Use '/' since it's mounted as '/admin'
 
     const dataPath = path.join(__dirname, '../uploads/data.json'); // Use __dirname
     fs.readFile(dataPath, (err, content) => {
-        if (err) return res.status(500).send('Error reading data'); // Handle read error
+        if (err) {return res.status(500).send('Error reading data');} // Handle read error
         const files = JSON.parse(content).filter(file => file.status === 'pending'); // Filter pending files
         res.render('admin', { files }); // Render the admin.ejs view with files
     });
@@ -29,13 +29,13 @@ router.post('/approve', (req, res) => {
     const { filePath } = req.body; // Get the file path from the request body
     const dataPath = path.join(__dirname, '../uploads/data.json'); // Path to the data file
     fs.readFile(dataPath, (err, content) => {
-        if (err) return res.status(500).send('Error reading data'); // Handle read error
-        let files = JSON.parse(content); // Parse the JSON content
+        if (err) {return res.status(500).send('Error reading data');} // Handle read error
+        const files = JSON.parse(content); // Parse the JSON content
         const fileIndex = files.findIndex(file => file.filePath === filePath); // Find the file index
         if (fileIndex !== -1) {
             files[fileIndex].status = 'approved'; // Update the file status to approved
             fs.writeFile(dataPath, JSON.stringify(files), (err) => {
-                if (err) return res.status(500).send('Error updating data'); // Handle write error
+                if (err) {return res.status(500).send('Error updating data');} // Handle write error
                 res.redirect('/admin'); // Redirect to the admin panel
             });
         } else {

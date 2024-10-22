@@ -7,6 +7,7 @@ import indexRouter from './routes/index.js'; // Import index route
 import uploadRouter from './routes/upload.js'; // Import upload route
 import authRouter from './routes/auth.js'; // Import auth route
 import adminRouter from './routes/admin.js'; // Import admin route
+import fs from 'fs'; // Import fs module for file system operations
 
 const app = express(); // Create an Express application
 const PORT = process.env.PORT || 3000; // Define the port
@@ -58,5 +59,24 @@ app.listen(PORT, () => {
 });
 
 app.get('/map', (req, res) => {
-    res.render('map');
+    const dataPath = path.join(__dirname, 'uploads/data.json');
+
+    fs.readFile(dataPath, (err, content) => {
+        if (err) {
+            console.error('Error reading data:', err);
+            return res.status(500).send('Error reading data');
+        }
+
+        let files;
+        try {
+            files = JSON.parse(content);
+            // Filter only approved files
+            files = files.filter(file => file.status === 'approved');
+        } catch (parseErr) {
+            console.error('Error parsing data:', parseErr);
+            files = [];
+        }
+
+        res.render('map', { files }); // Pass only approved files to the map view
+    });
 });
