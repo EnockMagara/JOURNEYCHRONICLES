@@ -36,6 +36,7 @@ router.post('/', upload.single('photo'), async (req, res) => {
     const filePath = req.file.filename;
     const caption = req.body.caption;
     const location = req.body.location;
+    const username = req.session.user.username; // Get the username from the session
 
     // Use the API key from environment variables
     const apiKey = process.env.OPENCAGE_API_KEY;
@@ -46,13 +47,17 @@ router.post('/', upload.single('photo'), async (req, res) => {
         const data = await response.json();
         const { lat, lng } = data.results[0].geometry;
 
-        const imageData = { filePath, caption, latitude: lat, longitude: lng };
+        const imageData = { filePath, caption, latitude: lat, longitude: lng, username, status: 'pending' };
         const dataPath = path.join(__dirname, '../uploads/data.json');
 
         fs.readFile(dataPath, (err, content) => {
             let jsonData = [];
-            if (!err) {
-                jsonData = JSON.parse(content);
+            if (!err && content.length > 0) {
+                try {
+                    jsonData = JSON.parse(content);
+                } catch (parseError) {
+                    console.error('Error parsing JSON:', parseError);
+                }
             }
             jsonData.push(imageData);
             fs.writeFile(dataPath, JSON.stringify(jsonData), (err) => {

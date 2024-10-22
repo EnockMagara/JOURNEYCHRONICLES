@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Admin Panel - Journey Chronicles</title>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <a href="/" class="button">Home</a>
+            <a href="/logout" class="button">Logout</a>
+        </nav>
+    </header>
+    <main class="page-content">
+        <h2>Pending Photos for Approval</h2>
+        <% if (files.length > 0) { %>
+            <ul>
+                <% files.forEach(file => { %>
+                    <li>
+                        <img src="/uploads/<%= file.filePath %>" alt="Pending photo" style="width:100px;height:auto;">
+                        <p><%= file.caption %></p>
+                        <form action="/approve" method="POST">
+                            <input type="hidden" name="filePath" value="<%= file.filePath %>">
+                            <button type="submit" class="button">Approve</button>
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No pending photos for approval.</p>
+        <% } %>
+    </main>
+</body>
+</html>
+

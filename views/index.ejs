@@ -16,17 +16,40 @@
             <a href="/" class="button">Home</a> <!-- Home button -->
             <a href="/map" class="button">Map</a> <!-- Map button -->
             <a href="/upload" class="button">Upload Photos</a> 
+            <% if (user && user.role === 'admin') { %>
+                <a href="/admin" class="button">Admin Page</a> <!-- Admin button -->
+            <% } %>
+            <a href="/logout" class="button">Logout</a> <!-- Logout button -->
         </nav>
     </header>
     <main class="page-content">
-        <div class="gallery">
-            <% files.forEach(file => { %> <!-- Loop through files -->
-                <div class="photo-item">
-                    <img src="/uploads/<%= file.filePath %>" alt="Uploaded photo"> <!-- Display uploaded photo -->
-                    <p class="caption"><%= file.caption %></p> <!-- Display caption -->
+        <select id="userFilter" onchange="filterPhotos()">
+            <option value="all">All Users</option>
+            <% users.forEach(user => { %>
+                <option value="<%= user.username %>"><%= user.username %></option>
+            <% }) %>
+        </select>
+        <div class="gallery" id="photoGallery">
+            <% files.forEach(file => { %>
+                <div class="photo-item" data-username="<%= file.username %>">
+                    <img src="/uploads/<%= file.filePath %>" alt="Uploaded photo">
+                    <p class="caption"><%= file.caption %></p>
                 </div>
             <% }) %>
         </div>
     </main>
+    <script>
+        function filterPhotos() {
+            const selectedUser = document.getElementById('userFilter').value;
+            const photos = document.querySelectorAll('.photo-item');
+            photos.forEach(photo => {
+                if (selectedUser === 'all' || photo.dataset.username === selectedUser) {
+                    photo.style.display = 'block';
+                } else {
+                    photo.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

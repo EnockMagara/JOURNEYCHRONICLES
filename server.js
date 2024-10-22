@@ -2,9 +2,11 @@ import express from 'express'; // Import Express
 import path from 'path'; // Import path module for handling file paths
 import { fileURLToPath } from 'url'; // Import to handle file URLs
 import bodyParser from 'body-parser'; // Import body-parser for parsing request bodies
-import multer from 'multer'; // Import multer for handling file uploads
+import session from 'express-session'; // Import express-session
 import indexRouter from './routes/index.js'; // Import index route
 import uploadRouter from './routes/upload.js'; // Import upload route
+import authRouter from './routes/auth.js'; // Import auth route
+import adminRouter from './routes/admin.js'; // Import admin route
 
 const app = express(); // Create an Express application
 const PORT = process.env.PORT || 3000; // Define the port
@@ -23,12 +25,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Configure multer for file uploads
-const upload = multer({ dest: 'uploads/' }); // Files will be stored in the 'uploads' directory
+// Set up session middleware
+app.use(session({
+    secret: 'your_secret_key', 
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } 
+}));
 
-// Use routes
-app.use('/', indexRouter);
-app.use('/upload', uploadRouter);
+// Allow access to login and sign-up routes without authentication
+app.use(authRouter); 
+
+// Middleware to check if the user is authenticated
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
+// Use the middleware to protect routes
+app.use('/', isAuthenticated, indexRouter);
+app.use('/upload', isAuthenticated, uploadRouter);
+app.use('/admin', isAuthenticated, adminRouter);
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
