@@ -10,7 +10,7 @@ import adminRouter from './routes/admin.js'; // Import admin route
 import fs from 'fs'; // Import fs module for file system operations
 
 const app = express(); // Create an Express application
-const PORT = process.env.PORT || 3000; // Define the port
+const PORT = process.env.PORT || 5555; // Define the port
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);

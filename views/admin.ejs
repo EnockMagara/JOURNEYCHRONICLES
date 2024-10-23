@@ -22,7 +22,7 @@
                     <li>
                         <img src="/uploads/<%= file.filePath %>" alt="Pending photo" style="width:100px;height:auto;">
                         <p><%= file.caption %></p>
-                        <form action="/approve" method="POST">
+                        <form action="/admin/approve" method="POST">
                             <input type="hidden" name="filePath" value="<%= file.filePath %>">
                             <button type="submit" class="button">Approve</button>
                         </form>
@@ -35,4 +35,3 @@
     </main>
 </body>
 </html>
-

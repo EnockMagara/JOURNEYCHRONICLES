@@ -26,6 +26,8 @@ router.get('/', (req, res) => { // Use '/' since it's mounted as '/admin'
 
 // Define the POST route to approve a photo
 router.post('/approve', (req, res) => {
+    console.log('POST /approve called');
+    console.log('Request body:', req.body);
     const { filePath } = req.body; // Get the file path from the request body
     const dataPath = path.join(__dirname, '../uploads/data.json'); // Path to the data file
     fs.readFile(dataPath, (err, content) => {
